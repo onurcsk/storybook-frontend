@@ -3,6 +3,7 @@ attrs==23.2.0
 blinker==1.8.2
 cachetools==5.3.3
 certifi==2024.2.2
+chardet==5.2.0
 charset-normalizer==3.3.2
 click==8.1.7
 customtkinter==5.2.2
@@ -19,6 +20,7 @@ mdurl==0.1.2
 numpy==1.26.4
 packaging==24.0
 pandas==2.2.2
+pdfkit==1.0.0
 pillow==10.3.0
 protobuf==4.25.3
 pyarrow==16.1.0
@@ -28,6 +30,7 @@ python-dateutil==2.9.0.post0
 Python_IO==0.3
 pytz==2024.1
 referencing==0.35.1
+reportlab==4.2.0
 requests==2.32.3
 rich==13.7.1
 rpds-py==0.18.1
