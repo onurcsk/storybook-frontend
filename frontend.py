@@ -269,9 +269,10 @@ if st.button("✨ Write my story!"):
     num_words = st.session_state['num_words']
     reader_age = st.session_state['reader_age']
     language = st.session_state['language']
-    character_names = ",".join([char['name'] for char in st.session_state.characters])
-    character_genders = ",".join([char['gender'] for char in st.session_state.characters])
-
+    character_names = ", ".join([char['name'] for char in st.session_state.characters])
+    character_genders = ", ".join([char['gender'] for char in st.session_state.characters])
+    image_captions = ', '.join(st.session_state.cached_captions.values())
+    
     # Generate the story using the fetched values and save the story and its details in the session state
     data = {
         "genre": genre,
@@ -280,7 +281,7 @@ if st.button("✨ Write my story!"):
         "language": language,
         "character_names": character_names,
         "character_genders": character_genders,
-        "captions": image_captions,
+        "image_captions": image_captions,
     }
     
     generated_story = requests.post(API_HOST + "generate_story/", data=data).json()["story"]
@@ -291,7 +292,7 @@ if st.button("✨ Write my story!"):
         "language": language,
         "character_names": character_names,
         "character_genders": character_genders,
-        "captions": image_captions,
+        "image_captions": image_captions,
         "story": generated_story
     }
 
@@ -322,9 +323,9 @@ if st.session_state.story_history:
                 st.write(f"**Story Genre or Theme:** {story_details['genre']}")
                 st.write(f"**Number of Words:** {story_details['num_words']}")
                 st.write(f"**Reader's Age:** {story_details['reader_age']}")
-                st.write(f"**Character Names:** {', '.join(story_details['character_names'])}")
-                st.write(f"**Character Genders:** {', '.join(story_details['character_genders'])}")
-                st.write(f"**Captions:** {', '.join(story_details['captions'])}")
+                st.write(f"**Character Names:** {story_details['character_names']}")
+                st.write(f"**Character Genders:** {story_details['character_genders']}")
+                st.write(f"**Captions:** {story_details['image_captions']}")
 
                 # Display the story
                 st.write(f"**Story:** {story_details['story']}")
