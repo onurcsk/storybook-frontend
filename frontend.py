@@ -29,6 +29,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+if 'cached_captions' not in st.session_state:
+    st.session_state.cached_captions = {}
+
+if 'story_history' not in st.session_state:
+    st.session_state.story_history = []
+
+if 'characters' not in st.session_state:
+    st.session_state.characters = []
+
 # Function to hash image
 def hash_image(image):
     buffer = BytesIO()
@@ -168,15 +177,6 @@ st.subheader("📸 Upload Images and Generate Story")
 uploaded_files = st.file_uploader("Upload up to 5 images", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 image_captions = []
 
-if 'cached_captions' not in st.session_state:
-    st.session_state.cached_captions = {}
-
-if 'story_history' not in st.session_state:
-    st.session_state.story_history = []
-
-if 'characters' not in st.session_state:
-    st.session_state.characters = []
-
 if uploaded_files:
     if len(uploaded_files) > 5:
         st.warning("You can only upload up to 5 images.")
@@ -269,8 +269,8 @@ if st.button("✨ Write my story!"):
     num_words = st.session_state['num_words']
     reader_age = st.session_state['reader_age']
     language = st.session_state['language']
-    character_names = [char['name'] for char in st.session_state.characters]
-    character_genders = [char['gender'] for char in st.session_state.characters]
+    character_names = ",".join([char['name'] for char in st.session_state.characters])
+    character_genders = ",".join([char['gender'] for char in st.session_state.characters])
 
     # Generate the story using the fetched values and save the story and its details in the session state
     data = {
