@@ -87,7 +87,7 @@ st.markdown(
 
 # Initialize session state for user inputs if not already present
 if 'genre' not in st.session_state:
-    st.session_state['genre'] = ""
+    st.session_state['genre'] = "Fantasy"
 if 'num_words' not in st.session_state:
     st.session_state['num_words'] = 25  # Default to 25 or another appropriate default value
 if 'reader_age' not in st.session_state:
